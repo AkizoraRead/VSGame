@@ -63,8 +63,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Chara\CharaBase.cs" />
+    <Compile Include="Assets\Script\Chara\Player\PlayerBase.cs" />
+    <Compile Include="Assets\Script\Chara\Player\PlayerController.cs" />
+    <Compile Include="Assets\Script\Chara\Player\PlayerData.cs" />
+    <Compile Include="Assets\Script\Director\BattleDirector.cs" />
+    <Compile Include="Assets\Script\Director\GameDirector.cs" />
+    <Compile Include="Assets\Script\Director\OptionDirector.cs" />
+    <Compile Include="Assets\Script\Director\SelectDirector.cs" />
+    <Compile Include="Assets\Script\Director\TitleDirector.cs" />
     <Compile Include="Assets\Script\Option\InputController.cs" />
     <Compile Include="Assets\Script\Option\SceneChange.cs" />
+    <Compile Include="Assets\Script\SaveData\SaveData.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
     AsyncOperation asncy;
+
+    [SerializeField,Header("ロード表示するUI")]
     GameObject  loadCanvas;     //ロードする際に変化するオブジェクト
     Slider      loadGage;       //ロード具合のわかるゲージ
 
     private void Start()
     {
 
-        this.loadCanvas = GameObject.Find("LoadCanvas");
+        this.loadCanvas = Instantiate(this.loadCanvas);
         this.loadGage = this.loadCanvas.transform.Find("LoadGage").GetComponent<Slider>();
 
         this.loadCanvas.SetActive(false);
