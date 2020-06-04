@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour,CharaCommand
 {
-    PlayerBase playerBase;
+    public PlayerBase playerBase;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.playerBase = new PlayerBase();
+        this.playerBase = new PlayerBase(gameObject);
+        this.playerBase.CharaLoad("PlayerData");
     }
 
     // Update is called once per frame
@@ -17,17 +19,24 @@ public class PlayerData : MonoBehaviour,CharaCommand
         
     }
 
-    public void Attack()
+    public void Command1()
     {
+        this.playerBase.attack.command();
     }
 
-    public void Recover()
+    public void Command2()
     {
+        this.playerBase.ColorChange(new Color(0.0f, 0.0f, 1.0f, 1.0f));
     }
 
-    public void Enhance()
+    public void Command3()
     {
+        this.playerBase.ColorChange(new Color(0.0f, 1.0f, 0.0f, 1.0f));
     }
 
+    public void Damage()
+    {
+
+    }
 
 }

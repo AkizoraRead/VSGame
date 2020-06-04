@@ -65,9 +65,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Chara\CharaBase.cs" />
     <Compile Include="Assets\Script\Chara\Player\PlayerBase.cs" />
+    <Compile Include="Assets\Script\Chara\Player\PlayerCharaCreate.cs" />
     <Compile Include="Assets\Script\Chara\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Chara\Player\PlayerData.cs" />
     <Compile Include="Assets\Script\Director\BattleDirector.cs" />
+    <Compile Include="Assets\Script\Director\CharaCreateDirector.cs" />
     <Compile Include="Assets\Script\Director\GameDirector.cs" />
     <Compile Include="Assets\Script\Director\OptionDirector.cs" />
     <Compile Include="Assets\Script\Director\SelectDirector.cs" />
@@ -75,6 +77,10 @@
     <Compile Include="Assets\Script\Option\InputController.cs" />
     <Compile Include="Assets\Script\Option\SceneChange.cs" />
     <Compile Include="Assets\Script\SaveData\SaveData.cs" />
+    <Compile Include="Assets\Script\Skill\CharaAttackCommand.cs" />
+    <Compile Include="Assets\Script\Skill\CharaCommandBase.cs" />
+    <Compile Include="Assets\Script\Skill\CharaEnhanceCommand.cs" />
+    <Compile Include="Assets\Script\Skill\CharaRecoverCommand.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -629,6 +635,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>F:/_MyGame/Unity/Unity VSGame Test/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>F:/_MyGame/Unity/Unity VSGame Test/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>F:/_MyGame/Unity/Unity VSGame Test/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

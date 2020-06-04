@@ -4,16 +4,41 @@ using UnityEngine;
 
 public class PlayerBase : CharaBase
 {
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     //プレイヤー固有のパラメータや関数
-    CharaType charaType;
-
-    public PlayerBase()
+    //--------------------------------------------------------------------------
+    //コンストラクタ
+    public PlayerBase(GameObject go)
     {
-        SetHP(10);
-        SetPower(10);
-        SetDodgeRate(10);
+        //初期化
+        this.CType = CharaType.Player;
 
-        this.charaType = CharaType.Player;
+        this.sprite = go.GetComponent<SpriteRenderer>();
+
+        UIChange();
+    }
+
+    //--------------------------------------------------------------------------
+    //UIなどに反映
+    public virtual void UIChange()
+    {
+        ColorChange(this.color);
+    }
+
+    //--------------------------------------------------------------------------
+    //キャラの色変更
+    public void ColorChange(Color color_)
+    {
+        this.color = color_;
+        this.sprite.color = color;
+    }
+
+    //--------------------------------------------------------------------------
+    //HPバー
+    public void HPBarSet(int hp_)
+    {
+
     }
 
 }
