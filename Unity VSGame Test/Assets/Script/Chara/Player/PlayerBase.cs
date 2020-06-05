@@ -13,15 +13,13 @@ public class PlayerBase : CharaBase
     {
         //初期化
         this.CType = CharaType.Player;
-
-        this.sprite = go.GetComponent<SpriteRenderer>();
-
+        ComponentSetting(go);
         UIChange();
     }
 
     //--------------------------------------------------------------------------
     //UIなどに反映
-    public virtual void UIChange()
+    public override void UIChange()
     {
         ColorChange(this.color);
     }

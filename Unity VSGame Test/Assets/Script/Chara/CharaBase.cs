@@ -32,9 +32,11 @@ public class CharaBase
     public Color color;              //色
 
     //コマンド
-    public CharaAttackCommand   attack;
-    public CharaRecoverCommand  recover;
-    public CharaEnhanceCommand  enhance;
+    CharaCommandData cDataClass;    //コマンドクラス
+
+    [SerializeField] string attackCName;    //初期設定用　コマンドネーム
+    [SerializeField] string recoverCName;   //初期設定用　コマンドネーム
+    [SerializeField] string enhanceCName;   //初期設定用　コマンドネーム
 
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
@@ -78,13 +80,44 @@ public class CharaBase
         this.sprite = null;
         this.color = new Color(1f, 1f, 1f, 1f);
 
+
         //コマンドセット
-        this.attack = new CharaAttackCommand("");
-
-        this.recover = new CharaRecoverCommand("");
-
-        this.enhance = new CharaEnhanceCommand("");
+        this.attackCName = "1";
+        this.recoverCName = "1";
+        this.enhanceCName = "1";
+        this.cDataClass = new CharaCommandData();
     }
+    //セッティング
+    //コンポーネントと変数の接続
+    protected virtual void ComponentSetting(GameObject go)
+    {
+        this.sprite = go.GetComponent<SpriteRenderer>();
+    }
+
+    //UI
+    public virtual void UIChange()
+    {
+
+    }
+
+    //コマンド設定
+    //Attack
+    public void CommandChange_Attack(string name_)
+    {
+        this.attackCName = name_;
+    }
+    //Recover
+    public void CommandChange_Recover(string name_)
+    {
+        this.recoverCName = name_;
+    }
+
+    //Enhance
+    public void CommandChange_Enhance(string name_)
+    {
+        this.enhanceCName = name_;
+    }
+
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
     //キャラパラメータログ    stringで返す
@@ -101,6 +134,9 @@ public class CharaBase
         log += CharaPowerLog();
         log += CharaDodgeRateLog();
         log += CharaColorLog();
+        log += CharaAttackCommandNameLog();
+        log += CharaRecoverCommandNameLog();
+        log += CharaEnhanceCommandNameLog();
 
         return log;
     }
@@ -134,6 +170,24 @@ public class CharaBase
         string log = "Color:" + this.color.ToString() + "\n";
         return log;
     }
+    //AttackCommandName
+    public string CharaAttackCommandNameLog()
+    {
+        string log = "Attack:" + this.cDataClass.attackCommand.cData[this.attackCName].cName + "\n";
+        return log;
+    }
+    //RecoverCommandName
+    public string CharaRecoverCommandNameLog()
+    {
+        string log = "Recover:" + this.cDataClass.recoverCommand.cData[this.recoverCName].cName + "\n";
+        return log;
+    }
+    //EnhanceCommandName
+    public string CharaEnhanceCommandNameLog()
+    {
+        string log = "Enhance:" + this.cDataClass.enhanceCommand.cData[this.enhanceCName].cName + "\n";
+        return log;
+    }
     //--------------------------------------------------------------------------
     //--------------------------------------------------------------------------
     //セーブ
@@ -149,10 +203,11 @@ public class CharaBase
     {
         PlayerPrefs.SetString(name, CharaParameter_ToJson());
         PlayerPrefs.Save();
+        Debug.Log("保存完了");
     }
 
     //ロード
-    public CharaBase CharaLoad(string name)
+    public CharaBase CharaLoad(string name,GameObject go)
     {
 
         //nameという名のデータが保存されているか
@@ -161,13 +216,16 @@ public class CharaBase
             //上書き
             var data = PlayerPrefs.GetString(name);
             JsonUtility.FromJsonOverwrite(data, this);
-            //セッティング（UIなどに反映）
-
         }
         else
         {
             Debug.LogError(name + "という名のデータは保存されていませんでした。");
         }
+        //セッティング(読み込みだけでは変わらない部分を初期化する)
+
+        //コマンドセット
+        ComponentSetting(go);   //コンポーネント
+        UIChange();             //UI
 
         return this;
     }

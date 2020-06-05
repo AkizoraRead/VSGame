@@ -15,21 +15,21 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            GetComponent<PlayerCharaCreate>().playerData.CharaSave("PlayerData");
+            GetComponent<PlayerCharaCreate>().playerBase.CharaSave("PlayerData");
         }
         if(Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log(GetComponent<PlayerCharaCreate>().playerData.CharaParameterLog());
-                Debug.Log(GetComponent<PlayerCharaCreate>().playerData.CharaParameter_ToJson());
+            Debug.Log(GetComponent<PlayerCharaCreate>().playerBase.CharaParameterLog());
+                Debug.Log(GetComponent<PlayerCharaCreate>().playerBase.CharaParameter_ToJson());
         }
         if(Input.GetKeyDown(KeyCode.D))
         {
-            GetComponent<PlayerCharaCreate>().playerData = new PlayerBase(gameObject);
+            GetComponent<PlayerCharaCreate>().playerBase = new PlayerBase(gameObject);
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
-            GetComponent<PlayerCharaCreate>().playerData.CharaLoad("PlayerData");
-            GetComponent<PlayerCharaCreate>().playerData.UIChange();
+            GetComponent<PlayerCharaCreate>().playerBase.CharaLoad("PlayerData",gameObject);
+            GetComponent<PlayerCharaCreate>().playerBase.UIChange();
         }
     }
 

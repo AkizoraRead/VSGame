@@ -5,19 +5,19 @@ using UnityEngine;
 //キャラ編集シーンで使われるプレイヤーの処理
 public class PlayerCharaCreate : MonoBehaviour
 {
-    public PlayerBase playerData;   //プレイヤーの変数などのデータ
+    public PlayerBase playerBase;   //プレイヤーの変数などのデータ
 
     // Start is called before the first frame update
     void Start()
     {
-        this.playerData = new PlayerBase(gameObject);
-        this.playerData.CharaLoad("PlayerData");    //プレイヤーのデータをロード、変数を反映
+        this.playerBase = new PlayerBase(gameObject);
+        this.playerBase.CharaLoad("PlayerData",gameObject);    //プレイヤーのデータをロード、変数を反映
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.playerData.sprite);
+        //Debug.Log(this.playerBase.sprite);
     }
 
     //ボタン操作
@@ -26,19 +26,46 @@ public class PlayerCharaCreate : MonoBehaviour
     //赤
     public void ColorChange_Red()
     {
-        this.playerData.ColorChange(new Color(1f, 0f, 0f,1f));
+        this.playerBase.ColorChange(new Color(1f, 0f, 0f,1f));
+
+        Debug.Log("色を赤に変更");
     }
     //青
     public void ColorChange_Blue()
     {
-        this.playerData.ColorChange(new Color(0f, 0f, 1f,1f));
+        this.playerBase.ColorChange(new Color(0f, 0f, 1f,1f));
+        Debug.Log("色を青に変更");
     }
     //緑
     public void ColorChange_Green()
     {
-        this.playerData.ColorChange(new Color(0f, 1f, 0f,1f));
+        this.playerBase.ColorChange(new Color(0f, 1f, 0f,1f));
+        Debug.Log("色を緑に変更");
     }
 
+    //コマンドを再設定
+    //Attack
+    public void CommandChange_Attack(string name_)
+    {
+        this.playerBase.CommandChange_Attack(name_);
+    }
+    //Recover
+    public void CommandChange_Recover(string name_)
+    {
+        this.playerBase.CommandChange_Recover(name_);
+    }
+    //Enhance
+    public void CommandChange_Enhance(string name_)
+    {
+        this.playerBase.CommandChange_Enhance(name_);
+    }
+
+    //パラメータを再設定
 
 
+    //セーブ
+    public void PlayerDataSave()
+    {
+        this.playerBase.CharaSave("PlayerData");
+    }
 }
